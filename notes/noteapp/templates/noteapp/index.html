@@ -1,0 +1,19 @@
+{% extends "noteapp/base.html" %}
+
+{% block content %}
+
+    {% for note in notes %}
+    <ul>
+        <li>
+            {% if not note.done %}
+            <a href="{% url 'noteapp:detail' note.id %}" role="button" class="outline"> {{ note.name }} </a>
+            <a href="{% url 'noteapp:set_done' note.id %}" role="button"> Mark Done </a>
+            <a href="{% url 'noteapp:delete' note.id %}" role="button" class="contrast"> Delete note </a>
+            {% else %}
+            <a href="{% url 'noteapp:detail' note.id %}" role="button" class="secondary"><s>{{ note.name }}</s></a>
+            {% endif %}
+        </li>
+    </ul>
+    {% endfor %}
+
+{% endblock %}
